@@ -18,8 +18,6 @@ The LEMP stack consists of:
 
 The Ubuntu server was accessed through AWS EC2 Instance Connect.
 
-![AWS EC2 Ubuntu Server](AWS_EC2.png)
-
 
 # STEP 1 - INSTALLING THE NGINX WEB SERVER
 
@@ -37,24 +35,13 @@ After installation, the Nginx service was checked to verify that it was running.
 
     sudo systemctl status nginx
 
-The Nginx configuration was also tested using:
+The Nginx service was confirmed to be active and running.
 
-    sudo nginx -t
+Nginx was also tested from the browser using the public IP address of the EC2 instance.
 
-The configuration test returned:
-
-    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-    nginx: configuration file /etc/nginx/nginx.conf test is successful
-
-Nginx was successfully installed and confirmed to be running.
-
-![Nginx Installation](NGINX_INSTALL.png)
+The default Nginx welcome page was successfully displayed, confirming that the web server was installed and working.
 
 ![Nginx Service Running](NGINX_STATUS.png)
-
-The Nginx server was then accessed through the public IP address of the EC2 instance.
-
-The default Nginx welcome page was successfully displayed in the browser.
 
 ![Nginx Welcome Page](NGINX_BROWSER.png)
 
@@ -71,11 +58,9 @@ The installation confirmed that MySQL Server 8.0.46 was installed on the Ubuntu 
 
 ![MySQL Installation](MYSQL_INSTALL.png)
 
-The MySQL service was then checked to verify that it was running correctly.
+MySQL was then accessed through the MySQL console to verify that the database server was working correctly.
 
-    sudo systemctl status mysql
-
-MySQL was successfully installed and configured as the database server for the project.
+The MySQL server was successfully installed and configured for the project.
 
 
 # STEP 3 - INSTALLING PHP
@@ -86,19 +71,13 @@ The required PHP packages were installed using:
 
     sudo apt install php-fpm php-mysql
 
-The PHP version was verified using:
-
-    php -v
-
-PHP-FPM was also checked to confirm that the PHP FastCGI Process Manager was running.
+The PHP-FPM service was checked to confirm that the PHP FastCGI Process Manager was running.
 
     sudo systemctl status php8.1-fpm
 
-The PHP-FPM service was confirmed to be active and running.
+The PHP 8.1 FastCGI Process Manager was confirmed to be active and running.
 
 ![PHP-FPM Service](PHP_FPM.png)
-
-PHP was successfully installed and configured as the server-side scripting component of the LEMP stack.
 
 
 # STEP 4 - CONFIGURING NGINX
@@ -112,30 +91,13 @@ Ownership of the directory was assigned to the current user.
 
     sudo chown -R $USER:$USER /var/www/projectLEMP
 
-An Nginx server block was created for the Project LEMP website.
+Nginx was configured to use the Project LEMP directory as the web root.
 
-The configuration used the following structure:
+The Nginx configuration was also configured to process PHP files through PHP-FPM.
 
-    server {
-        listen 80;
-        server_name projectLEMP www.projectLEMP;
+The PHP-FPM socket used by the configuration was:
 
-        root /var/www/projectLEMP;
-        index index.html index.htm index.php;
-
-        location / {
-            try_files $uri $uri/ =404;
-        }
-
-        location ~ \.php$ {
-            include snippets/fastcgi-php.conf;
-            fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-        }
-
-        location ~ /\.ht {
-            deny all;
-        }
-    }
+    /var/run/php/php8.1-fpm.sock
 
 The Nginx configuration was tested for syntax errors using:
 
@@ -150,16 +112,20 @@ Nginx was then reloaded to apply the configuration.
 
     sudo systemctl reload nginx
 
-The Nginx configuration was successfully applied and connected to PHP-FPM.
+The Nginx configuration was successfully applied.
 
 ![Nginx Configuration Test](NGINX_CONFIG.png)
+
+A test page was also accessed through the browser to verify that the configured Nginx web root was being served.
+
+![LEMP Test Page](LEMP_TEST.png)
 
 
 # STEP 5 - TESTING PHP WITH NGINX
 
 A PHP test file was created in the Project LEMP web root.
 
-The file was created at:
+The file was:
 
     /var/www/projectLEMP/info.php
 
@@ -199,19 +165,14 @@ The database was named:
 
 A database user named `example_user` was created and granted access to the project database.
 
-The database was accessed and the `todo_list` table was created.
+The `todo_list` table was created inside the database.
 
-The table used the following structure:
+The table contained the following fields:
 
-    CREATE TABLE todo_list (
-        item_id INT AUTO_INCREMENT,
-        content VARCHAR(255),
-        PRIMARY KEY(item_id)
-    );
+    item_id
+    content
 
-An item was inserted into the TODO list.
-
-The database contents were then checked using:
+The database contents were checked using:
 
     SELECT * FROM todo_list;
 
