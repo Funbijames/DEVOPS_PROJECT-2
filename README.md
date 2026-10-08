@@ -41,9 +41,7 @@ Nginx was also tested from the browser using the public IP address of the EC2 in
 
 The default Nginx welcome page was successfully displayed, confirming that the web server was installed and working.
 
-![Nginx Service Running](NGINX_STATUS.png)
-
-![Nginx Welcome Page](NGINX_BROWSER.png)
+![Step 1 - Nginx Welcome Page](IMG_4147.jpeg)
 
 
 # STEP 2 - INSTALLING MYSQL
@@ -56,7 +54,7 @@ The installation was performed using:
 
 The installation confirmed that MySQL Server 8.0.46 was installed on the Ubuntu server.
 
-![MySQL Installation](MYSQL_INSTALL.png)
+![Step 2 - MySQL Installation](IMG_4155.jpeg)
 
 MySQL was then accessed through the MySQL console to verify that the database server was working correctly.
 
@@ -77,7 +75,7 @@ The PHP-FPM service was checked to confirm that the PHP FastCGI Process Manager 
 
 The PHP 8.1 FastCGI Process Manager was confirmed to be active and running.
 
-![PHP-FPM Service](PHP_FPM.png)
+![Step 3 - PHP-FPM Service](IMG_4157.jpeg)
 
 
 # STEP 4 - CONFIGURING NGINX
@@ -114,11 +112,7 @@ Nginx was then reloaded to apply the configuration.
 
 The Nginx configuration was successfully applied.
 
-![Nginx Configuration Test](NGINX_CONFIG.png)
-
-A test page was also accessed through the browser to verify that the configured Nginx web root was being served.
-
-![LEMP Test Page](LEMP_TEST.png)
+![Step 4 - Nginx Configuration Test](IMG_4163.jpeg)
 
 
 # STEP 5 - TESTING PHP WITH NGINX
@@ -147,7 +141,7 @@ The page confirmed that PHP 8.1.2 was running with:
 
 This confirmed that Nginx was successfully processing PHP through PHP-FPM.
 
-![PHP Information Page](PHP_INFO.png)
+![Step 5 - PHP Information Page](IMG_4158.jpeg)
 
 After testing, the PHP information file was removed because it contains detailed information about the PHP environment and server configuration.
 
@@ -194,8 +188,6 @@ The final database result showed:
 
     Updated important item
 
-![MySQL Todo List](MYSQL_TODO.png)
-
 
 ## TESTING DATABASE ACCESS WITH THE PROJECT USER
 
@@ -210,8 +202,6 @@ The command successfully displayed:
     todo_list
 
 This confirmed that `example_user` could access the `example_database` database and its `todo_list` table.
-
-![Database Access Test](DATABASE_ACCESS.png)
 
 
 ## CREATING THE PHP TODO APPLICATION
@@ -232,8 +222,6 @@ The PHP application was tested locally using:
 
 The request successfully returned the TODO information from MySQL.
 
-![PHP MySQL Test](PHP_MYSQL_TEST.png)
-
 
 ## FINAL BROWSER TEST
 
@@ -249,7 +237,7 @@ The browser successfully displayed:
 
 This confirmed that Nginx successfully processed the PHP application, PHP successfully connected to MySQL, and the data was successfully retrieved from the MySQL database.
 
-![Final TODO List](TODO_FINAL.png)
+![Step 6 - Final TODO List](IMG_4205.jpeg)
 
 
 # CONCLUSION
